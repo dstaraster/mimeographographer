@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "macros.html" import sourceInstance %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>{{ sourceInstance(sourceForm) }}</td>
+        </tr>
+    </table>
+{% endblock %}

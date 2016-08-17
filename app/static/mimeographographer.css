@@ -1,0 +1,40 @@
+html {
+    font-family: Arial;
+}
+#logo {
+    float: left;
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+}
+#header {
+    background-color: #353C43;
+}
+#appTitle {
+    color: white;
+    padding: 13px;
+}
+.topLevelLabel {
+    font-size: 36px;
+    font-weight: bold;
+    height: 25px;
+}
+.inputLabel {
+/*    display: inline-block;
+    padding-right: 10px;*/
+    padding-left: 20px;
+}
+tr {
+    line-height: 2px;
+}
+.connectButton {
+    float: right;
+    background-color: #353C43;
+    border: none;
+    color: white;
+    padding: 15px 32 px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+}

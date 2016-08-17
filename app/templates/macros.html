@@ -1,0 +1,94 @@
+{% macro sourceInstance(sourceForm) %}
+
+    <div class="topLevelLabel">Source</div>
+    <form action="" method="post" name="source">
+    {{ sourceForm.hidden_tag() }}
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Instance URL</div>
+                </td>
+                <td>
+                    {{ sourceForm.url() }}
+                </td>
+                <td>
+                    <input type="submit" value="Get domains" class="connectButton" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inputLabel">Username</div>
+                </td>
+                <td>
+                    {{ sourceForm.username() }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inputLabel">Password</div>
+                </td>
+                <td>
+                    {{ sourceForm.password() }}
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro domainList(domainForm) %}
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Domain</div>
+                </td>
+                <td>
+                    {{ domainForm.domain }}
+                </td>
+                <td>
+                    <input type="submit" value="Get projects" class="connectButton" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro projectList(projectForm) %}
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Project</div>
+                </td>
+                <td>
+                    {{ projectForm.project }}
+                </td>
+                <td>
+                    <input type="submit" value="Get tables" class="connectButton" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro tableList(tableListForm) %}
+    <form>
+        <table>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<div class="inputLabel">Customer Provided Tables</div>-->
+                <!--</td>-->
+            <!--</tr>-->
+            <tr>
+                <td>
+                    {{ tableListForm.selectDeselect }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ tableListForm.tableList }}
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}

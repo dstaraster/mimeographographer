@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "macros.html" import sourceInstance %}
+{% from "macros.html" import domainList %}
+
+{% block content %}
+    <table>
+        <tr>
+            <td>{{ sourceInstance(sourceForm) }}</td>
+        </tr>
+        <tr>
+           <td>{{ domainList(domainForm) }}</td>
+        </tr>
+    </table>
+{% endblock %}
