@@ -18,6 +18,9 @@ global selectedTables
 global targetDomain
 global targetDomainForm
 global targetProjectForm
+global targetProject
+global sourceInstance
+global targetInstance
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -25,7 +28,9 @@ def index():
     sourceForm = InstanceForm()
     if sourceForm.validate_on_submit():
         global url
-        url = "http://localhost:8080/instances/" + request.form['url']
+        global sourceInstance
+        sourceInstance = request.form['url']
+        url = "http://localhost:8080/instances/" + sourceInstance
         # we're going to fudge authentication;
         # backend will always use perf creds
         # username = request.form['username']
@@ -99,7 +104,9 @@ def targetInstance():
     targetForm = InstanceForm()
     if targetForm.validate_on_submit():
         global url
-        url = "http://localhost:8080/instances/" + request.form['url']
+        global targetInstance
+        targetInstance = request.form['url']
+        url = "http://localhost:8080/instances/" + targetInstance
         return redirect('/targetDomains')
     return render_template('targetInstance.html',
                            sourceForm=sourceForm,
@@ -149,6 +156,19 @@ def targetProjects():
                                targetForm=targetForm,
                                targetDomainForm=targetDomainForm,
                                targetProjectForm=targetProjectForm)
+    global targetProject
+    targetProject = request.form['project']
+    return redirect('/copyDatasets')
+
+@app.route('/copyDatasets', methods=['GET', 'POST'])
+def copyDatasets():
+    request_url = "http://localhost:8080/instances/" + sourceInstance \
+                    + '/domains/' + domain \
+                    + '/projects/' + project \
+                    + '/lazyLoadFactTable'
+
+    #/{instance}/domains/{domain}/projects/{project}/lazyLoadFactTables/{lazyLoadFactTable}/dates/{date}/targetInstances/{targetInstance}/targetDomains/{targetDomain}/targetProjects/{targetProject}
+
 
 def add_domains(DomainForm, domains):
     DomainForm.domain.choices = [(d, d) for d in domains]

@@ -72,13 +72,22 @@
 {% endmacro %}
 
 {% macro tableListDisplay(tableList) %}
+    <input type="checkbox" name="selectDeselect" onClick="selectDeselect(this)" checked >Select/Deselect All
+    <script>
+        function selectDeselect(source) {
+           // alert("got here");
+           checkboxes = document.getElementsByName('tableList[]');
+           for (var i = 0 ; i < checkboxes.length; i++)
+                checkboxes[i].checked = source.checked;
+        }
+    </script>
     <form>
         <table>
             <tr>
                 <td>
                     <ul>
                         {% for tl in tableList %}
-                            <li><input type="checkbox" name="tableList[]" value="{{ tl }}"checked>{{ tl }}</li>
+                            <li><input type="checkbox" name="tableList[]" value="{{ tl }}" checked>{{ tl }}</li>
                         {% endfor %}
                     </ul>
                 </td>
