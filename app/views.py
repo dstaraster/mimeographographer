@@ -140,7 +140,7 @@ def targetDomains():
 @app.route('/targetProjects', methods=['GET', 'POST'])
 def targetProjects():
     global url
-    request_url = url + '/' + domain + '/projects'
+    request_url = url + '/' + targetDomain + '/projects'
     response, content = http.request(request_url, 'GET')
     if response.status == 200:
         projects = json.loads(content.decode('utf-8'))
@@ -174,9 +174,13 @@ def copyDatasets():
         if response.status == 200:
             copied.append(table);
     return render_template('done.html',
+                           sourceInstance=sourceInstance,
+                           sourceDomain=domain,
+                           sourceProject=project,
+                           targetInstance=targetInstance,
+                           targetDomain=targetDomain,
+                           targetProject=targetProject,
                            copied=copied)
-
-    #/{instance}/domains/{domain}/projects/{project}/lazyLoadFactTables/{lazyLoadFactTable}/dates/{date}/targetInstances/{targetInstance}/targetDomains/{targetDomain}/targetProjects/{targetProject}
 
 
 def add_domains(DomainForm, domains):

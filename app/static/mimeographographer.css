@@ -16,7 +16,7 @@ html {
     padding: 13px;
 }
 .topLevelLabel {
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
     height: 25px;
 }
@@ -28,7 +28,7 @@ label {
     width: 100px;
 }
 tr {
-    line-height: 2px;
+    /*line-height: 2px;*/
 }
 .connectButton {
     float: right;
@@ -41,20 +41,70 @@ tr {
     padding-top: 2px;
     padding-bottom: 2px;
     width: 150px;
+    margin: 2px 2px;
 }
 input[type="text"] {
     width: 200px;
     padding: 5px 5px;
     margin: 2px 0;
+    border: 1px solid #353C43;
+    border-radius: 2px;
 }
 input[type="password"] {
     width: 200px;
     padding: 5px 5px;
     margin: 2px 0;
+    border: 1px solid #353C43;
+    border-radius: 2px;
 }
 select {
-    width: 205px;
+    width: 210px;
+    padding: 5px 5px;
+    border: 1px solid #353C43;
+    border-radius: 2px;
 }
 .instance {
     text-align: right;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    display: block;
+    float: left;
+    width: 50%;
+}
+.selectTablesButton {
+    float: right;
+    background-color: #353C43;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 200px;
+    margin: 2px 2px;
+    height: 50px;
+}
+.copyButton {
+    float: right;
+    background-color: #E86630;
+    border: none;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 25px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 150px;
+    margin: 2px 2px;
+}
+hr {
+ border: 0;
+ height: 2px;
+ background: #333;
+ background-image: linear-gradient(to right, #ccc, #333, #ccc);
+ margin: 25px;
 }

@@ -37,7 +37,7 @@
 
 {% macro domainList(domainForm) %}
     <form method="POST">
-        <table>
+        <table class="instance">
             <tr>
                 <td>
                     <label class="inputLabel">Domain</label>
@@ -55,10 +55,10 @@
 
 {% macro projectList(projectForm) %}
     <form method="POST">
-        <table>
+        <table class="instance">
             <tr>
                 <td>
-                    <div class="inputLabel">Project</div>
+                    <label class="inputLabel">Project</label>
                 </td>
                 <td>
                     {{ projectForm.project }}
@@ -91,8 +91,8 @@
                         {% endfor %}
                     </ul>
                 </td>
-                <td style="vertical-align: top;">
-                    <input type="submit" value="Select these datasets" class="connectButton" />
+                <td style="align-horizontal: right;">
+                    <input type="submit" value="Select these datasets" class="selectTablesButton" />
                 </td>
             </tr>
         </table>
@@ -103,10 +103,10 @@
     <div class="topLevelLabel">Target</div>
     <form action="" method="post" name="source">
     {{ targetForm.hidden_tag() }}
-        <table>
+        <table class="instance">
             <tr>
                 <td>
-                    <div class="inputLabel">Instance URL</div>
+                    <label class="inputLabel">Instance URL</label>
                 </td>
                 <td>
                     {{ targetForm.url() }}
@@ -114,7 +114,7 @@
             </tr>
             <tr>
                 <td>
-                    <div class="inputLabel">Username</div>
+                    <label class="inputLabel">Username</label>
                 </td>
                 <td>
                     {{ targetForm.username() }}
@@ -122,7 +122,7 @@
             </tr>
             <tr>
                 <td>
-                    <div class="inputLabel">Password</div>
+                    <label class="inputLabel">Password</label>
                 </td>
                 <td>
                     {{ targetForm.password() }}
@@ -137,10 +137,10 @@
 
 {% macro targetDomainList(targetDomainForm) %}
     <form method="POST">
-        <table>
+        <table class="instance">
             <tr>
                 <td>
-                    <div class="inputLabel">Domain</div>
+                    <label class="inputLabel">Domain</label>
                 </td>
                 <td>
                     {{ targetDomainForm.domain }}
@@ -155,10 +155,10 @@
 
 {% macro targetProjectList(targetProjectForm) %}
     <form method="POST">
-        <table>
+        <table class="instance">
             <tr>
                 <td>
-                    <div class="inputLabel">Project</div>
+                    <label class="inputLabel">Project</label>
                 </td>
                 <td>
                     {{ targetProjectForm.project }}
