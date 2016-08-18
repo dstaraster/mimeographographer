@@ -3,11 +3,13 @@
 {% from "macros.html" import domainList %}
 {% from "macros.html" import projectList %}
 {% from "macros.html" import tableListDisplay %}
+{% from "macros.html" import targetInstance %}
 
 {% block content %}
     <table>
         <tr>
             <td>{{ sourceInstance(sourceForm) }}</td>
+            <td>{{ targetInstance(targetForm) }}</td>
         </tr>
         <tr>
            <td>{{ domainList(domainForm) }}</td>

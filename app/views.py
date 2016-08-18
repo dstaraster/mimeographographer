@@ -10,9 +10,14 @@ global url
 global sourceForm
 global domainForm
 global projectForm
+global targetForm
 global domain
 global project
-global TableListForm
+global tableList
+global selectedTables
+global targetDomain
+global targetDomainForm
+global targetProjectForm
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -73,8 +78,8 @@ def tableList():
     request_url = url + '/' + fixString(project) + '/lazyLoadFactTables'
     response, content = http.request(request_url, 'GET')
     if response.status == 200:
+        global tableList
         tableList = json.loads(content.decode('utf-8'))
-        global tableListForm
         tableListForm = TableListForm()
         add_tables(tableListForm, tableList)
         url = request_url
@@ -82,8 +87,68 @@ def tableList():
                                sourceForm=sourceForm,
                                domainForm=domainForm,
                                projectForm=projectForm,
-                               tableListForm=tableListForm)
-    return redirect('/sourceProjects')
+                                tableList=tableList['LazyLoadFactTableManifest'])
+    global selectedTables
+    selectedTables = request.values.getlist('tableList[]')
+    return redirect('/targetInstance')
+
+@app.route('/targetInstance', methods=['GET', 'POST'])
+def targetInstance():
+    global url
+    global targetForm
+    targetForm = InstanceForm()
+    if targetForm.validate_on_submit():
+        global url
+        url = "http://localhost:8080/instances/" + request.form['url']
+        return redirect('/targetDomains')
+    return render_template('targetInstance.html',
+                           sourceForm=sourceForm,
+                           domainForm=domainForm,
+                           projectForm=projectForm,
+                           tableList=tableList['LazyLoadFactTableManifest'],
+                           targetForm=targetForm)
+
+@app.route('/targetDomains', methods=['GET', 'POST'])
+def targetDomains():
+    global url
+    request_url = url + '/domains'
+    response, content = http.request(request_url , 'GET')
+    if response.status == 200:
+        domains = json.loads(content.decode('utf-8'))
+        global targetDomainForm
+        targetDomainForm = DomainForm()
+        add_domains(targetDomainForm, domains)
+        url = request_url
+        return render_template('targetDomains.html',
+                               sourceForm=sourceForm,
+                               domainForm=domainForm,
+                               projectForm=projectForm,
+                               tableList=tableList['LazyLoadFactTableManifest'],
+                               targetForm=targetForm,
+                               targetDomainForm=targetDomainForm)
+    global targetDomain
+    targetDomain = request.form['domain']
+    return redirect('/targetProjects')
+
+@app.route('/targetProjects', methods=['GET', 'POST'])
+def targetProjects():
+    global url
+    request_url = url + '/' + domain + '/projects'
+    response, content = http.request(request_url, 'GET')
+    if response.status == 200:
+        projects = json.loads(content.decode('utf-8'))
+        global targetProjectForm
+        targetProjectForm = ProjectForm()
+        add_projects(targetProjectForm, projects)
+        url = request_url
+        return render_template('targetProjects.html',
+                               sourceForm=sourceForm,
+                               domainForm=domainForm,
+                               projectForm=projectForm,
+                               tableList=tableList['LazyLoadFactTableManifest'],
+                               targetForm=targetForm,
+                               targetDomainForm=targetDomainForm,
+                               targetProjectForm=targetProjectForm)
 
 def add_domains(DomainForm, domains):
     DomainForm.domain.choices = [(d, d) for d in domains]

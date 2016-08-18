@@ -64,29 +64,98 @@
                     {{ projectForm.project }}
                 </td>
                 <td>
-                    <input type="submit" value="Get tables" class="connectButton" />
+                    <input type="submit" value="Get datasets" class="connectButton" />
                 </td>
             </tr>
         </table>
     </form>
 {% endmacro %}
 
-{% macro tableList(tableListForm) %}
+{% macro tableListDisplay(tableList) %}
     <form>
         <table>
-            <!--<tr>-->
-                <!--<td>-->
-                    <!--<div class="inputLabel">Customer Provided Tables</div>-->
-                <!--</td>-->
-            <!--</tr>-->
             <tr>
                 <td>
-                    {{ tableListForm.selectDeselect }}
+                    <ul>
+                        {% for tl in tableList %}
+                            <li><input type="checkbox" name="tableList[]" value="{{ tl }}"checked>{{ tl }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td style="vertical-align: top;">
+                    <input type="submit" value="Select these datasets" class="connectButton" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro targetInstance(targetForm) %}
+    <div class="topLevelLabel">Target</div>
+    <form action="" method="post" name="source">
+    {{ targetForm.hidden_tag() }}
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Instance URL</div>
+                </td>
+                <td>
+                    {{ targetForm.url() }}
+                </td>
+                <td>
+                    <input type="submit" value="Get domains" class="connectButton" />
                 </td>
             </tr>
             <tr>
                 <td>
-                    {{ tableListForm.tableList }}
+                    <div class="inputLabel">Username</div>
+                </td>
+                <td>
+                    {{ targetForm.username() }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="inputLabel">Password</div>
+                </td>
+                <td>
+                    {{ targetForm.password() }}
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro targetDomainList(targetDomainForm) %}
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Domain</div>
+                </td>
+                <td>
+                    {{ targetDomainForm.domain }}
+                </td>
+                <td>
+                    <input type="submit" value="Get projects" class="connectButton" />
+                </td>
+            </tr>
+        </table>
+    </form>
+{% endmacro %}
+
+{% macro targetProjectList(targetProjectForm) %}
+    <form method="POST">
+        <table>
+            <tr>
+                <td>
+                    <div class="inputLabel">Project</div>
+                </td>
+                <td>
+                    {{ targetProjectForm.project }}
+                </td>
+                <td>
+                    <input type="submit" value="COPY DATASETS" class="copyButton" />
                 </td>
             </tr>
         </table>

@@ -15,7 +15,7 @@ class ProjectForm(Form):
 
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
-    option_widget = widgets.CheckboxInput()
+    option_widget = widgets.CheckboxInput('T')
 
 class TableListForm(Form):
     selectDeselect = BooleanField()
