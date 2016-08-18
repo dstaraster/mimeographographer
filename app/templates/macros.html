@@ -3,21 +3,18 @@
     <div class="topLevelLabel">Source</div>
     <form action="" method="post" name="source">
     {{ sourceForm.hidden_tag() }}
-        <table>
+        <table class="instance">
             <tr>
                 <td>
-                    <div class="inputLabel">Instance URL</div>
+                    <label class="inputLabel">Instance URL</label>
                 </td>
                 <td>
                     {{ sourceForm.url() }}
                 </td>
-                <td>
-                    <input type="submit" value="Get domains" class="connectButton" />
-                </td>
             </tr>
             <tr>
                 <td>
-                    <div class="inputLabel">Username</div>
+                    <label class="inputLabel">Username</label>
                 </td>
                 <td>
                     {{ sourceForm.username() }}
@@ -25,10 +22,13 @@
             </tr>
             <tr>
                 <td>
-                    <div class="inputLabel">Password</div>
+                    <label class="inputLabel">Password</label>
                 </td>
                 <td>
                     {{ sourceForm.password() }}
+                </td>
+                <td>
+                    <input type="submit" value="Get domains" class="connectButton" />
                 </td>
             </tr>
         </table>
@@ -40,7 +40,7 @@
         <table>
             <tr>
                 <td>
-                    <div class="inputLabel">Domain</div>
+                    <label class="inputLabel">Domain</label>
                 </td>
                 <td>
                     {{ domainForm.domain }}
@@ -111,9 +111,6 @@
                 <td>
                     {{ targetForm.url() }}
                 </td>
-                <td>
-                    <input type="submit" value="Get domains" class="connectButton" />
-                </td>
             </tr>
             <tr>
                 <td>
@@ -129,6 +126,9 @@
                 </td>
                 <td>
                     {{ targetForm.password() }}
+                </td>
+                <td>
+                    <input type="submit" value="Get domains" class="connectButton" />
                 </td>
             </tr>
         </table>

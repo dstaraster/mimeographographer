@@ -164,8 +164,17 @@ def targetProjects():
 def copyDatasets():
     request_url = "http://localhost:8080/instances/" + sourceInstance \
                     + '/domains/' + domain \
-                    + '/projects/' + project \
-                    + '/lazyLoadFactTable'
+                    + '/projects/' + fixString(project) \
+                    + '/lazyLoadFactTables/'
+    destination = '/targetInstances/' + targetInstance + '/targetDomains/' + targetDomain + '/targetProjects/' + fixString(targetProject) + '/copy'
+    copied = []
+    for table in selectedTables:
+        temp_url = request_url + fixString(table) + destination
+        response, content = http.request(request_url + fixString(table) + destination)
+        if response.status == 200:
+            copied.append(table);
+    return render_template('done.html',
+                           copied=copied)
 
     #/{instance}/domains/{domain}/projects/{project}/lazyLoadFactTables/{lazyLoadFactTable}/dates/{date}/targetInstances/{targetInstance}/targetDomains/{targetDomain}/targetProjects/{targetProject}
 
