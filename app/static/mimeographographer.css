@@ -66,10 +66,10 @@ select {
 .instance {
     text-align: right;
 }
-ul {
+#tableList {
     list-style-type: none;
 }
-li {
+.grid {
     display: block;
     float: left;
     width: 50%;

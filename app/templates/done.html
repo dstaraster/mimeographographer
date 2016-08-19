@@ -7,7 +7,7 @@
             <div class="topLevelLabel">Source</div>
             <table style="padding: 10px;">
                 <tr>
-                    <td sty>Instance URL</td>
+                    <td  style="width: 150px;">Instance URL</td>
                     <td style="width: 500px;">{{ sourceInstance }}</td>
                 </tr>
                 <tr>
@@ -24,8 +24,8 @@
             <div class="topLevelLabel">Target</div>
             <table style="padding: 10px;">
                 <tr>
-                    <td>Instance URL</td>
-                    <td>{{ targetInstance }}</td>
+                    <td style="width: 150px;">Instance URL</td>
+                    <td style="width: 500px;">{{ targetInstance }}</td>
                 </tr>
                 <tr>
                     <td>Domain</td>
@@ -39,7 +39,10 @@
         </td>
     </tr>
 </table>
-{% for c in copied %}
-    <h2>{{ c }}</h2>
-{% endfor %}
+<h3>Copied Datasets:</h3>
+<ul>
+    {% for c in copied %}
+        <li>{{ c }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
